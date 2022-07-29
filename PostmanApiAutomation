@@ -1,0 +1,252 @@
+{
+	"info": {
+		"_postman_id": "71266b39-97bd-40e8-8533-a426916a87af",
+		"name": "End_to_End",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22351885"
+	},
+	"item": [
+		{
+			"name": "Adding data",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 7391,\r\n    \"title\": \"Faru\",\r\n    \"author\": \"typicode\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/{{path}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"{{path}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verifying data added sucessfully",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"i=11\r",
+							"\r",
+							"for (i=1;i<11;i++)\r",
+							"{\r",
+							"    console.log(i*11)\r",
+							"}\r",
+							"\r",
+							"for(each of \"chandu\"){\r",
+							"    console.log(each)\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"console.log(\"start js\")\r",
+							"\r",
+							"var a=24\r",
+							"if (a%2==0){\r",
+							"    console.log(\"This is even\")\r",
+							"}\r",
+							"else{\r",
+							"    console.log(\"This is odd\")\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/posts/7395",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"posts",
+						"7395"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Updating data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Faru\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 7395,\r\n    \"title\": \"Faru\",\r\n    \"author\": \"chandu\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/posts/7395",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"posts",
+						"7395"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verifying updated data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/posts/7395",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"posts",
+						"7395"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deleting data",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/posts/7395",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"posts",
+						"7395"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verifying deleted data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/posts/7395",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"posts",
+						"7395"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get and set varilables",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"/* console.log(responseTime)\r",
+							"console.log(responseCode.code)\r",
+							"console.log(responseCode.name)\r",
+							"console.log(responseCode.detail) */\r",
+							"\r",
+							"//pm.environment.unset(\"urls\")\r",
+							"//console.log(pm.environment.get(\"urls\"))\r",
+							"//pm.environment.unset(\"variable_key\");\r",
+							"\r",
+							"\r",
+							"//pm.globals.set(\"variable_key\", \"variable_value\");\r",
+							"//pm.globals.get(\"variable_key\");\r",
+							"//pm.globals.unset(\"variable_key\");\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 90,\r\n    \"title\": \"Knowledge\",\r\n    \"author\": \"Chandu\"\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/posts",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
